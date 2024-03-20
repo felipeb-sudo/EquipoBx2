@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    background: black;
+    overflow: hidden;
+}
+#wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#game{
+    height: 100vh;
+    max-height: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.card{
+    width: 100px;
+    height: 140px;
+    margin: 1rem;
+    position: relative;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
