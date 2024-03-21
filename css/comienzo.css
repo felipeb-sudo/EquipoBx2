@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    background: url(../img/fondo.jpg);
+    background-size: cover;
+    color: rgb(243, 136, 110);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #welcome-container {
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  #welcome-title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    animation: slideInFromTop 1s ease-out;
+  }
+  
+  #start-button {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: #fe4c05;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    animation: slideInFromBottom 1s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
