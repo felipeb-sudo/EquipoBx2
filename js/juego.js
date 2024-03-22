@@ -79,7 +79,6 @@ function star(){
    }, 1000);
 }
 star();
-
 function verificarJuegoCompleto() {
   if (document.querySelectorAll('.carta:not(.activa)').length === 0) {
     mostrarPaginaFinal();
