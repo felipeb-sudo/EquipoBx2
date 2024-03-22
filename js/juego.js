@@ -1,36 +1,36 @@
-const totalCards = 12;
-const availableCards = ['A', 'K', 'Q', 'J'];
-let cards = [];
-let selectedCards = [];
-let valuesUsed = [];
-let currentMove = 0;
-let currentAttempts = 0;
+const totalCartas = 12;
+const cartasDisponibles = ['A', 'K', 'Q', 'J'];
+let cartas = [];
+let cartasSeleccionadas = [];
+let valoresUsados = [];
+let movimientoActual = 0;
+let intentosActuales = 0;
 
-let cardTemplate = '<div class="card"><div class="back"></div><div class="face"></div></div>';
+let plantillaCarta = '<div class="carta"><div class="reverso"></div><div class="cara"></div></div>';
 
-function activate(e) {
-   if (currentMove < 2) {
+function activar(e) {
+   if (movimientoActual < 2) {
       
-      if ((!selectedCards[0] || selectedCards[0] !== e.target) && !e.target.classList.contains('active') ) {
-         e.target.classList.add('active');
-         selectedCards.push(e.target);
+      if ((!cartasSeleccionadas[0] || cartasSeleccionadas[0] !== e.target) && !e.target.classList.contains('activa') ) {
+         e.target.classList.add('activa');
+         cartasSeleccionadas.push(e.target);
 
-         if (++currentMove == 2) {
+         if (++movimientoActual == 2) {
 
-            currentAttempts++;
-            document.querySelector('#stats').innerHTML = currentAttempts + ' intentos';
+            intentosActuales++;
+            document.querySelector('#estadisticas').innerHTML = intentosActuales + ' esfuerzos';
 
-            if (selectedCards[0].querySelectorAll('.face')[0].innerHTML == selectedCards[1].querySelectorAll('.face')[0].innerHTML) {
-               selectedCards = [];
-               currentMove = 0;
-               checkGameCompletion(); // Llama a la función para verificar si se completó el juego
+            if (cartasSeleccionadas[0].querySelectorAll('.cara')[0].innerHTML == cartasSeleccionadas[1].querySelectorAll('.cara')[0].innerHTML) {
+               cartasSeleccionadas = [];
+               movimientoActual = 0;
+               verificarJuegoCompleto(); // Llama a la función para verificar si se completó el juego
             }
             else {
                setTimeout(() => {
-                  selectedCards[0].classList.remove('active');
-                  selectedCards[1].classList.remove('active');
-                  selectedCards = [];
-                  currentMove = 0;
+                  cartasSeleccionadas[0].classList.remove('activa');
+                  cartasSeleccionadas[1].classList.remove('activa');
+                  cartasSeleccionadas = [];
+                  movimientoActual = 0;
                }, 600);
             }
          }
@@ -38,45 +38,43 @@ function activate(e) {
    }
 }
 
-function randomValue() {
-   let rnd = Math.floor(Math.random() * totalCards * 0.5);
-   let values = valuesUsed.filter(value => value === rnd);
-   if (values.length < 2) {
-      valuesUsed.push(rnd);
+function valorAleatorio() {
+   let rnd = Math.floor(Math.random() * totalCartas * 0.5);
+   let valores = valoresUsados.filter(valor => valor === rnd);
+   if (valores.length < 2) {
+      valoresUsados.push(rnd);
    }
    else {
-      randomValue();
+      valorAleatorio();
    }
 }
 
-function getFaceValue(value) {
-   let rtn = value;
-   if (value < availableCards.length) {
-      rtn = availableCards[value];
+function obtenerValorCara(valor) {
+   let rtn = valor;
+   if (valor < cartasDisponibles.length) {
+      rtn = cartasDisponibles[valor];
    }
    return rtn;
 }
 
-for (let i=0; i < totalCards; i++) {
+for (let i=0; i < totalCartas; i++) {
    let div = document.createElement('div');
-   div.innerHTML = cardTemplate;
-   cards.push(div);
-   document.querySelector('#game').append(cards[i]);
-   randomValue();
-   cards[i].querySelectorAll('.face')[0].innerHTML = getFaceValue(valuesUsed[i]);
-   cards[i].querySelectorAll('.card')[0].addEventListener('click', activate);
+   div.innerHTML = plantillaCarta;
+   cartas.push(div);
+   document.querySelector('#juego').append(cartas[i]);
+   valorAleatorio();
+   cartas[i].querySelectorAll('.cara')[0].innerHTML = obtenerValorCara(valoresUsados[i]);
+   cartas[i].querySelectorAll('.carta')[0].addEventListener('click', activar);
 }
 
-function checkGameCompletion() {
-  if (document.querySelectorAll('.card:not(.active)').length === 0) {
-    showEndGamePage();
+function verificarJuegoCompleto() {
+  if (document.querySelectorAll('.carta:not(.activa)').length === 0) {
+    mostrarPaginaFinal();
   }
 }
 
-
-
-function showEndGamePage() {
-  let score = currentAttempts;
-  localStorage.setItem('score', score);
+function mostrarPaginaFinal() {
+  let puntaje = intentosActuales;
+  localStorage.setItem('puntaje', puntaje);
   window.location.href = 'final.html';
 }

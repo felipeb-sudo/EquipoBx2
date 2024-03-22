@@ -1,18 +1,16 @@
-document.getElementById('restart-button').addEventListener('click', function() {
-    window.location.href = 'juego.html';
-  });
-  
-  function showScore() {
-    let score = localStorage.getItem('score');
-    if (score) {
-      document.getElementById('score-value').textContent = score;
-    } else {
-      document.getElementById('score-value').textContent = 'No se encontró puntaje';
-    }
+document.getElementById('boton-reiniciar').addEventListener('click', function() {
+  window.location.href = 'juego.html';
+});
+
+function mostrarPuntaje() {
+  let puntaje = localStorage.getItem('puntaje');
+  if (puntaje) {
+      document.getElementById('valor-puntaje').textContent = puntaje;
+  } else {
+      document.getElementById('valor-puntaje').textContent = 'No se encontró puntaje';
   }
-  
-  window.onload = function() {
-    showScore();
-  };
-  
-  
+}
+
+window.onload = function() {
+  mostrarPuntaje();
+};
