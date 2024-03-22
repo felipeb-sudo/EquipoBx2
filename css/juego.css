@@ -47,6 +47,8 @@ body {
    position: relative;
    transition: transform 0.5s;
    transform-style: preserve-3d;
+   float: left;
+   margin: 50px;
 }
 
 .carta.activa {
