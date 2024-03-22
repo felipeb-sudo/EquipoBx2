@@ -23,7 +23,7 @@ function activar(e) {
             if (cartasSeleccionadas[0].querySelectorAll('.cara')[0].innerHTML == cartasSeleccionadas[1].querySelectorAll('.cara')[0].innerHTML) {
                cartasSeleccionadas = [];
                movimientoActual = 0;
-               verificarJuegoCompleto(); // Llama a la función para verificar si se completó el juego
+               verificarJuegoCompleto();
             }
             else {
                setTimeout(() => {
