@@ -5,6 +5,8 @@ let cartasSeleccionadas = [];
 let valoresUsados = [];
 let movimientoActual = 0;
 let intentosActuales = 0;
+let gameTime = 60;
+let timerElement = document.querySelector('#timer');
 
 let plantillaCarta = '<div class="carta"><div class="reverso"></div><div class="cara"></div></div>';
 
@@ -57,15 +59,26 @@ function obtenerValorCara(valor) {
    return rtn;
 }
 
-for (let i=0; i < totalCartas; i++) {
-   let div = document.createElement('div');
-   div.innerHTML = plantillaCarta;
-   cartas.push(div);
-   document.querySelector('#juego').append(cartas[i]);
-   valorAleatorio();
-   cartas[i].querySelectorAll('.cara')[0].innerHTML = obtenerValorCara(valoresUsados[i]);
-   cartas[i].querySelectorAll('.carta')[0].addEventListener('click', activar);
+function star(){
+   for (let i=0; i < totalCartas; i++) {
+      let div = document.createElement('div');
+      div.innerHTML = plantillaCarta;
+      cartas.push(div);
+      document.querySelector('#juego').append(cartas[i]);
+      valorAleatorio();
+      cartas[i].querySelectorAll('.cara')[0].innerHTML = obtenerValorCara(valoresUsados[i]);
+      cartas[i].querySelectorAll('.carta')[0].addEventListener('click', activar);
+   }
+   let intervalId = setInterval(() => {
+      gameTime--;
+      timerElement.textContent = gameTime + ' seconds';
+      if (gameTime === 0) {
+        clearInterval(intervalId);
+        alert("Se acabó el tiempo!");
+      }
+   }, 1000);
 }
+star();
 
 function verificarJuegoCompleto() {
   if (document.querySelectorAll('.carta:not(.activa)').length === 0) {
