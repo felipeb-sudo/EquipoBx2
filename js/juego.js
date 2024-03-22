@@ -74,6 +74,7 @@ function star(){
       timerElement.textContent = gameTime + ' seconds';
       if (gameTime === 0) {
         clearInterval(intervalId);
+         window.location.href = 'perdio.html';
         alert("Se acabó el tiempo!");
       }
    }, 1000);
